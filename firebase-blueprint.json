@@ -1,0 +1,219 @@
+{
+  "entities": {
+    "MaterialItem": {
+      "title": "MaterialItem",
+      "description": "Item de material hospitalar ou insumo no estoque central",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "location": { "type": "string" },
+        "currentStock": { "type": "number" },
+        "minStock": { "type": "number" },
+        "unit": { "type": "string" },
+        "unitPrice": { "type": "number" },
+        "lastUpdated": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "category", "location", "currentStock", "minStock", "unit", "unitPrice", "lastUpdated"]
+    },
+    "MachineEquipment": {
+      "title": "MachineEquipment",
+      "description": "Máquina ou equipamento com rastreamento e custódia",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "location": { "type": "string" },
+        "serialNumber": { "type": "string" },
+        "status": { "type": "string" },
+        "currentHolderName": { "type": "string" },
+        "registeredBy": { "type": "string" },
+        "lastStatusChangeDate": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "category", "location", "status", "registeredBy", "lastStatusChangeDate"]
+    },
+    "ServiceOrderOS": {
+      "title": "ServiceOrderOS",
+      "description": "Ordem de serviço gerada automaticamente ao detectar avaria",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "osNumber": { "type": "string" },
+        "machineId": { "type": "string" },
+        "machineCode": { "type": "string" },
+        "machineName": { "type": "string" },
+        "reportedBy": { "type": "string" },
+        "reportedDate": { "type": "string" },
+        "defectDescription": { "type": "string" },
+        "priority": { "type": "string" },
+        "status": { "type": "string" },
+        "resolvedBy": { "type": "string" },
+        "resolvedDate": { "type": "string" },
+        "resolutionNotes": { "type": "string" }
+      },
+      "required": ["id", "osNumber", "machineId", "machineCode", "machineName", "reportedBy", "reportedDate", "defectDescription", "priority", "status"]
+    },
+    "LaundryRecord": {
+      "title": "LaundryRecord",
+      "description": "Registro de remessa e retorno de enxoval para lavanderia",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "shift": { "type": "string" },
+        "nightLinenQty": { "type": "number" },
+        "dayLinenQty": { "type": "number" },
+        "totalPieces": { "type": "number" },
+        "dispatchedByName": { "type": "string" },
+        "dispatchedAt": { "type": "string" },
+        "laundryStaffName": { "type": "string" },
+        "returnedAt": { "type": "string" },
+        "receivedByName": { "type": "string" },
+        "receivedPieces": { "type": "number" },
+        "missingPieces": { "type": "number" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "date", "shift", "nightLinenQty", "dayLinenQty", "totalPieces", "dispatchedByName", "dispatchedAt", "laundryStaffName", "receivedPieces", "missingPieces", "status"]
+    },
+    "ExternalUnitGUE": {
+      "title": "ExternalUnitGUE",
+      "description": "Unidade Externa com sub-estoque",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "responsibleName": { "type": "string" },
+        "contactPhone": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "responsibleName", "contactPhone", "email", "address", "active", "createdAt"]
+    },
+    "GUERequest": {
+      "title": "GUERequest",
+      "description": "Solicitação de transferência para Unidade Externa",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "requestId": { "type": "string" },
+        "unitId": { "type": "string" },
+        "unitName": { "type": "string" },
+        "materialId": { "type": "string" },
+        "materialCode": { "type": "string" },
+        "materialName": { "type": "string" },
+        "requestedQty": { "type": "number" },
+        "status": { "type": "string" },
+        "requestedByName": { "type": "string" },
+        "requestedAt": { "type": "string" },
+        "reviewedByName": { "type": "string" },
+        "reviewedAt": { "type": "string" },
+        "rejectionReason": { "type": "string" },
+        "dispatchDate": { "type": "string" }
+      },
+      "required": ["id", "requestId", "unitId", "unitName", "materialId", "materialCode", "materialName", "requestedQty", "status", "requestedByName", "requestedAt"]
+    },
+    "StockMovement": {
+      "title": "StockMovement",
+      "description": "Registro de entrada ou saída atômica no estoque",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "materialId": { "type": "string" },
+        "materialCode": { "type": "string" },
+        "materialName": { "type": "string" },
+        "type": { "type": "string" },
+        "quantity": { "type": "number" },
+        "previousStock": { "type": "number" },
+        "newStock": { "type": "number" },
+        "operatorName": { "type": "string" },
+        "reason": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "relatedReference": { "type": "string" }
+      },
+      "required": ["id", "materialId", "materialCode", "materialName", "type", "quantity", "previousStock", "newStock", "operatorName", "reason", "timestamp"]
+    },
+    "AuditLogEntry": {
+      "title": "AuditLogEntry",
+      "description": "Registro imutável de auditoria corporativa CRUD",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userRole": { "type": "string" },
+        "actionType": { "type": "string" },
+        "module": { "type": "string" },
+        "entityId": { "type": "string" },
+        "summary": { "type": "string" },
+        "ipAddress": { "type": "string" },
+        "userAgent": { "type": "string" },
+        "changesPayload": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "userId", "userName", "userRole", "actionType", "module", "summary"]
+    },
+    "UserAccount": {
+      "title": "UserAccount",
+      "description": "Colaborador ou Administrador do sistema",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "department": { "type": "string" },
+        "active": { "type": "boolean" },
+        "permissions": { "type": "object" }
+      },
+      "required": ["id", "name", "email", "role", "department", "active", "permissions"]
+    }
+  },
+  "firestore": {
+    "/materials/{materialId}": {
+      "schema": "MaterialItem",
+      "description": "Catálogo e saldo de materiais em estoque"
+    },
+    "/machines/{machineId}": {
+      "schema": "MachineEquipment",
+      "description": "Parque de máquinas e equipamentos"
+    },
+    "/service_orders/{serviceOrderId}": {
+      "schema": "ServiceOrderOS",
+      "description": "Ordens de serviço para manutenção de máquinas"
+    },
+    "/laundry_records/{recordId}": {
+      "schema": "LaundryRecord",
+      "description": "Controle diário e por turnos de lavanderia"
+    },
+    "/external_units/{unitId}": {
+      "schema": "ExternalUnitGUE",
+      "description": "Unidades externas atendidas"
+    },
+    "/gue_requests/{requestId}": {
+      "schema": "GUERequest",
+      "description": "Pedidos de materiais com aprovação ADM"
+    },
+    "/stock_movements/{movementId}": {
+      "schema": "StockMovement",
+      "description": "Histórico atômico de movimentações de estoque"
+    },
+    "/audit_logs/{logId}": {
+      "schema": "AuditLogEntry",
+      "description": "Trilha de auditoria e conformidade"
+    },
+    "/users/{userId}": {
+      "schema": "UserAccount",
+      "description": "Usuários e perfis cadastrados"
+    }
+  }
+}

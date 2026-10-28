@@ -1,0 +1,6 @@
+{
+  "name": "ESTOQUE CENTRAL - Gestão Corporativa e Logística",
+  "description": "Sistema corporativo de controle de estoque de missão crítica, rastreamento de máquinas, lavanderia, ordens de serviço, GUEs e auditoria em tempo real com arquitetura offline-first.",
+  "requestFramePermissions": ["CAMERA"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

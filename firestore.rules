@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Coleções públicas/operacionais do sistema corporativo com validação de ID
+    match /materials/{materialId} {
+      allow read: if true;
+      allow write: if isValidId(materialId);
+    }
+
+    match /machines/{machineId} {
+      allow read: if true;
+      allow write: if isValidId(machineId);
+    }
+
+    match /service_orders/{serviceOrderId} {
+      allow read: if true;
+      allow write: if isValidId(serviceOrderId);
+    }
+
+    match /laundry_records/{recordId} {
+      allow read: if true;
+      allow write: if isValidId(recordId);
+    }
+
+    match /external_units/{unitId} {
+      allow read: if true;
+      allow write: if isValidId(unitId);
+    }
+
+    match /gue_requests/{requestId} {
+      allow read: if true;
+      allow write: if isValidId(requestId);
+    }
+
+    match /stock_movements/{movementId} {
+      allow read: if true;
+      allow write: if isValidId(movementId);
+    }
+
+    match /audit_logs/{logId} {
+      allow read: if true;
+      allow create: if isValidId(logId);
+      allow update, delete: if false; // Auditoria é estritamente imutável
+    }
+
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if isValidId(userId);
+    }
+
+    match /system_meta/{metaId} {
+      allow read: if true;
+      allow write: if isValidId(metaId);
+    }
+  }
+}
